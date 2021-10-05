@@ -69,14 +69,19 @@ function emailIsValid(email) {
 const d = new Date();
 const fullYear = d.getFullYear();
 let month = d.getMonth() + 1;
-const day = d.getDate();
+let day = d.getDate();
 
-if (month < 10) {
+if (month <= 9) {
   month = "0" + month;
-} else {
-  month = month;
 }
+
+if (day <= 9) {
+  day = "0" + day;
+}
+
 let dateNow = fullYear + "-" + month + "-" + day;
+console.log(dateNow);
+console.log(typeof dateNow);
 
 function checkForm() {
   const firstNameValue = document.getElementById("first").value.trim();
@@ -93,8 +98,6 @@ function checkForm() {
     setError(firstName, "Votre prénom doit contenir minimum 2 caractères");
   } else {
     deleteError(firstName);
-    console.log(firstNameValue);
-    console.log(typeof firstNameValue);
   }
   // Si le champ Nom de famille à 2 caractères et n'est pas vide.
   if (lastNameValue === "" || lastNameValue.length < 2) {
@@ -104,8 +107,6 @@ function checkForm() {
     );
   } else {
     deleteError(lastName);
-    console.log(lastNameValue);
-    console.log(typeof lastNameValue);
   }
 
   // Si l'adresse email est bien valide.
@@ -113,8 +114,6 @@ function checkForm() {
     setError(email, "Votre adresse électronique n'est pas valide.");
   } else {
     deleteError(email);
-    console.log(emailValue);
-    console.log(typeof emailValue);
   }
 
   // Optionnel: Vérification de la date de naissance.
@@ -134,8 +133,6 @@ function checkForm() {
     );
   } else {
     deleteError(tournament);
-    console.log(tournamentValue);
-    console.log(typeof tournamentValue);
   }
 
   // Si un bouton radio est sélectionné.
@@ -151,8 +148,6 @@ function checkForm() {
     setError(radioBtn, "Veuillez indiquer la ville où vous residez.");
   } else {
     deleteError(radioBtn);
-    console.log(btnTrue);
-    console.log(typeof btnTrue);
   }
 
   // Si la case des conditions générales est cochée
@@ -190,7 +185,6 @@ function checkValidation() {
 function process() {
   // Selection des élements du dom
 
-  console.log(formValidation);
   // Si le formulaire est valide
   if (formValidation === true) {
     // Disparition de toutes les entrées du formulaire  sauf de la dernière DIV
